@@ -1,4 +1,4 @@
-name: tests
+name: phpstan
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  ci:
+  phpstan:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,16 +26,11 @@ jobs:
           tools: composer:v2
           coverage: none
 
-      - name: Setup Node
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: '22'
-
       - name: Add Flux license
         run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
 
-      - name: Setup Application
-        run: composer setup
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
 
-      - name: Run CI Checks
-        run: composer ci:check
+      - name: Run PHPStan
+        run: composer types:check
