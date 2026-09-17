@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', PublicSearch::class)->name('home');
 
 Route::get('/packages/{vendor}/{name}', PublicPackageDetail::class)->name('packages.show');
-Route::get('/{vendor}/{name}/{new_version}', PublicChangelogDetail::class)->name('changelogs.show');
+Route::get('/packages/{vendor}/{name}/{new_version}', PublicChangelogDetail::class)->name('changelogs.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
