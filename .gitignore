@@ -37,3 +37,7 @@ yarn-error.log
 /boost.json
 /opencode.json
 /opencode.jsonc
+
+# Impeccable review captures
+/.impeccable/review/
+/.impeccable/questions/

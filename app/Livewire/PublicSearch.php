@@ -3,11 +3,14 @@
 namespace App\Livewire;
 
 use App\Enums\ChangelogChangeType;
+use App\Enums\ChangelogStatus;
 use App\Models\Changelog;
 use App\Models\Package;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection as SupportCollection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -39,6 +42,15 @@ class PublicSearch extends Component
     public function clearFilters(): void
     {
         $this->search = '';
+        $this->vendor = null;
+        $this->resetPage();
+    }
+
+    /**
+     * Clear only the vendor filter and reset pagination.
+     */
+    public function clearVendor(): void
+    {
         $this->vendor = null;
         $this->resetPage();
     }
@@ -100,6 +112,25 @@ class PublicSearch extends Component
     }
 
     /**
+     * Sheet-level facts for the title block. Unfiltered: they describe the whole record.
+     *
+     * @return array{packages: int, changelogs: int, latest: Changelog|null}
+     */
+    #[Computed]
+    public function facts(): array
+    {
+        $checked = Changelog::query()
+            ->where('status', ChangelogStatus::Checked)
+            ->whereHas('package', fn (Builder $query) => $query->where('is_active', true));
+
+        return [
+            'packages' => Package::query()->where('is_active', true)->count(),
+            'changelogs' => (clone $checked)->count(),
+            'latest' => (clone $checked)->with('package')->latest()->first(),
+        ];
+    }
+
+    /**
      * Get a summary map of change counts for a changelog.
      *
      * @return array<string, int>
@@ -111,6 +142,19 @@ class PublicSearch extends Component
             'new' => $changelog->changes->where('type', ChangelogChangeType::New)->count(),
             'updated' => $changelog->changes->where('type', ChangelogChangeType::Updated)->count(),
         ];
+    }
+
+    /**
+     * Titles of the breaking changes in a changelog, for the revision delta.
+     *
+     * @return SupportCollection<int, string>
+     */
+    public function breakingTitles(Changelog $changelog): SupportCollection
+    {
+        return $changelog->changes
+            ->where('type', ChangelogChangeType::Breaking)
+            ->pluck('title')
+            ->values();
     }
 
     public function render(): View
