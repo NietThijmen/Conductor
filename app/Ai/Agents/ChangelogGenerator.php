@@ -4,6 +4,7 @@ namespace App\Ai\Agents;
 
 use App\Enums\ChangelogChangeType;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Laravel\Ai\Attributes\Timeout;
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Contracts\Conversational;
 use Laravel\Ai\Contracts\HasStructuredOutput;
@@ -11,6 +12,7 @@ use Laravel\Ai\Messages\Message;
 use Laravel\Ai\Promptable;
 use Stringable;
 
+#[Timeout(300)]
 class ChangelogGenerator implements Agent, Conversational, HasStructuredOutput
 {
     use Promptable;
