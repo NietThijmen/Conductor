@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Models\Registry;
 use Flux\Flux;
+use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
@@ -105,6 +107,9 @@ class Registries extends Component
         $registry->update(['is_active' => ! $registry->is_active]);
     }
 
+    /**
+     * @return array<string, list<mixed>>
+     */
     public function rules(): array
     {
         return [
@@ -129,15 +134,18 @@ class Registries extends Component
         $this->resetErrorBag();
     }
 
+    /**
+     * @return LengthAwarePaginator<int, Registry>
+     */
     #[Computed]
-    public function registries()
+    public function registries(): LengthAwarePaginator
     {
         return Registry::query()
             ->orderBy('name')
             ->paginate(10);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.registries');
     }

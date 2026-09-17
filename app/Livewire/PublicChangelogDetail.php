@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Changelog;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -26,7 +27,7 @@ class PublicChangelogDetail extends Component
             ->firstOrFail();
     }
 
-    public function render()
+    public function render(): View
     {
         $title = $this->changelog->title
             ?? "{$this->changelog->package->name} {$this->changelog->new_version} changelog";
