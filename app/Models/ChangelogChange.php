@@ -39,6 +39,8 @@ class ChangelogChange extends Model
 
     /**
      * Get the changelog this change belongs to.
+     *
+     * @return BelongsTo<Changelog, $this>
      */
     public function changelog(): BelongsTo
     {

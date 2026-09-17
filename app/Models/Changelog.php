@@ -42,6 +42,8 @@ class Changelog extends Model
 
     /**
      * Get the package this changelog belongs to.
+     *
+     * @return BelongsTo<Package, $this>
      */
     public function package(): BelongsTo
     {
@@ -50,6 +52,8 @@ class Changelog extends Model
 
     /**
      * Get the individual changes within this changelog.
+     *
+     * @return HasMany<ChangelogChange, $this>
      */
     public function changes(): HasMany
     {

@@ -42,6 +42,8 @@ class Registry extends Model
 
     /**
      * Get the packages that belong to this registry.
+     *
+     * @return HasMany<Package, $this>
      */
     public function packages(): HasMany
     {

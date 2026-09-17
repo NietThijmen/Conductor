@@ -39,6 +39,8 @@ class Package extends Model
 
     /**
      * Get the registry this package belongs to, if any.
+     *
+     * @return BelongsTo<Registry, $this>
      */
     public function registry(): BelongsTo
     {
@@ -47,6 +49,8 @@ class Package extends Model
 
     /**
      * Get the changelogs for this package.
+     *
+     * @return HasMany<Changelog, $this>
      */
     public function changelogs(): HasMany
     {
