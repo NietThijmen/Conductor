@@ -83,7 +83,7 @@ final class FileSystemDiffer implements FileSystemDifferContract
                 continue;
             }
 
-            if (!in_array($fileInfo->getExtension(), ['php', 'json', 'lock', 'md'])) {
+            if (! in_array($fileInfo->getExtension(), ['php', 'json', 'lock', 'md'])) {
                 continue;
             }
 

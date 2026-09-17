@@ -27,10 +27,6 @@ final class PackageDownloader implements PackageDownloaderContract
     /**
      * Download a specific package version into the given destination.
      *
-     * @param Registry $registry
-     * @param string $package
-     * @param string $version
-     * @param string $destination
      * @throws DownloadFailedException
      * @throws UnsupportedPackageTypeException
      */

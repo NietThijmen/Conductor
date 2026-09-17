@@ -83,7 +83,7 @@ This enables fully autonomous workflows: an AI agent audits your dependencies, r
 **`app/Models/`**
 
 - **`Package`** — Eloquent model for the admin-managed watchlist. Stores the package name (e.g. `laravel/framework`) and the currently tracked version. Administrators add and update these records
-- **`Changelog`** — Eloquent model storing generated changelogs per package version
+- **`ChangelogServer`** — Eloquent model storing generated changelogs per package version
 - **`Dependency`** — Tracks watched packages and their version history
 
 **`app/Jobs/` — Queue jobs**

@@ -37,7 +37,7 @@
 
 *Store changelogs so they're available for review and reference.*
 
-- [ ] **`Changelog` model & migration** — Persist generated changelogs: package name, version change, raw AI response, categorized changes, timestamp
+- [ ] **`ChangelogServer` model & migration** — Persist generated changelogs: package name, version change, raw AI response, categorized changes, timestamp
 - [ ] **`changelog:history` command** — List past changelogs for a given package
 - [ ] **`changelog:review` command** — Review pending/unreviewed changelogs before committing updates
 

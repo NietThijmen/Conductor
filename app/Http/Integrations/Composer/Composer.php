@@ -27,6 +27,7 @@ class Composer extends Connector
     {
         $clone = clone $this;
         $clone->registry = $registry;
+
         return $clone;
     }
 

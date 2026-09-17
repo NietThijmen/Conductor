@@ -43,7 +43,7 @@ final class ZipDownloadStrategy implements DownloadStrategy
                     'sink' => $tempFile,
                     'User-Agent' => 'Composer Changelog (https://github.com/nietthijmen/composer-changelog)',
                     'accept' => 'application/zip',
-                    'Connection' => 'close'
+                    'Connection' => 'close',
                 ]);
 
             $this->extract($tempFile, $destination);
@@ -51,7 +51,6 @@ final class ZipDownloadStrategy implements DownloadStrategy
         } catch (GuzzleException $exception) {
             Log::error("Failed to download zip from {$url}: {$exception->getMessage()}");
             throw $exception; // throw the exception up to fail "gracefully"
-
         } finally {
             if (file_exists($tempFile)) {
                 unlink($tempFile);
