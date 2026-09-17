@@ -1,8 +1,8 @@
-# Composer Changelogger — Overview
+# Conductor — Overview
 
 ## Vision
 
-Composer Changelogger gives developers peace of mind when updating dependencies. Instead of blindly running `composer update` and hoping nothing breaks, you get a human-readable, AI-generated changelog of exactly what changed — broken down into BREAKING, NEW, and UPDATED categories — before you commit or deploy.
+Conductor gives developers peace of mind when updating dependencies. Instead of blindly running `composer update` and hoping nothing breaks, you get a human-readable, AI-generated changelog of exactly what changed — broken down into BREAKING, NEW, and UPDATED categories — before you commit or deploy.
 
 ## Architecture
 
@@ -53,7 +53,7 @@ Changelog Store ────→ Persists structured changelogs,
 
 ### AI Agent Integration via MCP
 
-Composer Changelogger doubles as an **MCP server** (Model Context Protocol), allowing AI coding assistants — Cursor, Claude Code, GitHub Copilot, and others — to query package updates and their changelogs directly. An agent can ask:
+Conductor doubles as an **MCP server** (Model Context Protocol), allowing AI coding assistants — Cursor, Claude Code, GitHub Copilot, and others — to query package updates and their changelogs directly. An agent can ask:
 
 > "What packages need updating?" → Returns tracked packages where a newer version exists on Packagist
 > "What changed in laravel/framework between 11.0.0 and 12.0.0?" → Returns the structured changelog

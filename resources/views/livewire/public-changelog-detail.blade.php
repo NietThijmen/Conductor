@@ -8,7 +8,7 @@
 
     @push('seo')
         <meta name="description" content="{{ $changelog->summary ? strip_tags($changelog->summary) : 'Changelog for '.$changelog->package->name.' from '.$changelog->old_version.' to '.$changelog->new_version.'.' }}">
-        <meta property="og:title" content="{{ $changelog->title ?? $changelog->package->name.' changelog' }} - Changelogger">
+        <meta property="og:title" content="{{ $changelog->title ?? $changelog->package->name.' changelog' }} - Conductor">
         <meta property="og:description" content="{{ $changelog->summary ? strip_tags($changelog->summary) : 'See every breaking, new and updated change.' }}">
         <meta property="og:type" content="article">
         <meta property="og:url" content="{{ $changelogUrl }}">

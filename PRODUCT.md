@@ -14,7 +14,7 @@ web
 
 ## Product Purpose
 
-Composer Changelogger (app name: "Changelogger") gives developers peace of mind when updating dependencies. For every version transition of a tracked Composer package it stores a human-readable, AI-generated changelog broken into **BREAKING**, **NEW** and **UPDATED** changes, plus a title and summary. Success: a developer knows what will break before they commit or deploy, without scouring release notes or diffing tags by hand.
+Conductor gives developers peace of mind when updating dependencies. For every version transition of a tracked Composer package it stores a human-readable, AI-generated changelog broken into **BREAKING**, **NEW** and **UPDATED** changes, plus a title and summary. Success: a developer knows what will break before they commit or deploy, without scouring release notes or diffing tags by hand.
 
 ## Positioning
 
@@ -40,7 +40,7 @@ The changelog is generated from the **actual file-system diff between the two pa
 
 ## Brand Commitments
 
-- Name: "Changelogger" in the UI (`config('app.name')`), "Composer Changelogger" in docs.
+- Name: "Conductor" in the UI (`config('app.name')`) and docs.
 - The current logo mark (`resources/views/components/app-logo-icon.blade.php`) is the Laravel starter kit's placeholder glyph, not an owned asset; nothing binds it.
 - No confirmed voice guide. Existing copy is plain, direct, second person ("before you update").
 - Semantic vocabulary already used across public pages: breaking = red, new = green, updated = indigo. Not pinned as a palette, but the three-way categorisation itself is product truth and must stay legible.

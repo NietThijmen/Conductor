@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-10">
     @push('seo')
-        <meta name="description" content="Changelogger overview for {{ $package->name }} — see what changed between versions before you update.">
-        <meta property="og:title" content="{{ $package->name }} changelog - Changelogger">
+        <meta name="description" content="Conductor overview for {{ $package->name }} — see what changed between versions before you update.">
+        <meta property="og:title" content="{{ $package->name }} changelog - Conductor">
         <meta property="og:description" content="See every checked changelog for {{ $package->name }}.">
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ route('packages.show', ['vendor' => $vendor, 'name' => $name]) }}">

@@ -38,7 +38,7 @@
 
                 <footer class="sheet-footer">
                     <span class="sheet-label">{{ config('app.name') }}</span>
-                    <span>Composer package changelogs, generated from the actual diff between versions.</span>
+                    <span>Conductor generates Composer package changelogs from the actual diff between versions.</span>
                 </footer>
             </div>
         </div>

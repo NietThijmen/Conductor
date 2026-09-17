@@ -1,5 +1,5 @@
 ---
-name: Changelogger
+name: Conductor
 description: A technical drawing's revision sheet for Composer package changelogs — ruled paper in drawing ink, process blue for action, revision red for the breaking delta alone.
 colors:
   board: "#eef1f5"
@@ -191,7 +191,7 @@ components:
     padding: "{spacing.unit-1-5} {spacing.unit-3}"
 ---
 
-# Design System: Changelogger
+# Design System: Conductor
 
 ## Overview
 
