@@ -2,8 +2,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>
-    {{ filled($title ?? null) ? $title.' - '.config('app.name', 'Laravel') : config('app.name', 'Laravel') }}
+    {{ filled($title ?? null) ? $title.' - '.config('app.name', 'Changelogger') : config('app.name', 'Changelogger') }}
 </title>
+
+<meta name="description" content="{{ $description ?? 'Composer Changelogger surfaces AI-generated changelogs for Composer packages, so you know what changed before you update.' }}">
+<link rel="canonical" href="{{ url()->current() }}">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">

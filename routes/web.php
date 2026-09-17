@@ -2,10 +2,16 @@
 
 use App\Livewire\Changelogs;
 use App\Livewire\Packages;
+use App\Livewire\PublicChangelogDetail;
+use App\Livewire\PublicPackageDetail;
+use App\Livewire\PublicSearch;
 use App\Livewire\Registries;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome')->name('home');
+Route::get('/', PublicSearch::class)->name('home');
+
+Route::get('/packages/{vendor}/{name}', PublicPackageDetail::class)->name('packages.show');
+Route::get('/{vendor}/{name}/{new_version}', PublicChangelogDetail::class)->name('changelogs.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
