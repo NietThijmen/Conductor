@@ -15,6 +15,15 @@
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
+                    <flux:sidebar.item icon="server-stack" :href="route('registries')" :current="request()->routeIs('registries')" wire:navigate>
+                        {{ __('Registries') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="cube" :href="route('packages')" :current="request()->routeIs('packages')" wire:navigate>
+                        {{ __('Packages') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="clipboard-document-list" :href="route('changelogs')" :current="request()->routeIs('changelogs')" wire:navigate>
+                        {{ __('Changelogs') }}
+                    </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 

@@ -63,7 +63,10 @@ class GenerateChangelog implements ShouldQueue
             $newDirectory = $downloader->download($this->package->name, $this->newVersion, $basePath);
 
             $diff = $differ->compare($oldDirectory, $newDirectory);
-            $response = $agent->prompt($this->buildPrompt($diff));
+            $response = $agent->prompt(
+                prompt: $this->buildPrompt($diff),
+                model: 'deepseek/deepseek-v4.1-flash:nitro'
+            );
 
             if (! $response instanceof StructuredAgentResponse) {
                 throw new RuntimeException('Expected a structured response from the changelog generator agent.');

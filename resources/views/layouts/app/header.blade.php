@@ -13,6 +13,15 @@
                 <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                     {{ __('Dashboard') }}
                 </flux:navbar.item>
+                <flux:navbar.item icon="server-stack" :href="route('registries')" :current="request()->routeIs('registries')" wire:navigate>
+                    {{ __('Registries') }}
+                </flux:navbar.item>
+                <flux:navbar.item icon="cube" :href="route('packages')" :current="request()->routeIs('packages')" wire:navigate>
+                    {{ __('Packages') }}
+                </flux:navbar.item>
+                <flux:navbar.item icon="clipboard-document-list" :href="route('changelogs')" :current="request()->routeIs('changelogs')" wire:navigate>
+                    {{ __('Changelogs') }}
+                </flux:navbar.item>
             </flux:navbar>
 
             <flux:spacer />
@@ -55,6 +64,15 @@
                 <flux:sidebar.group :heading="__('Platform')">
                     <flux:sidebar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard')  }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="server-stack" :href="route('registries')" :current="request()->routeIs('registries')" wire:navigate>
+                        {{ __('Registries') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="cube" :href="route('packages')" :current="request()->routeIs('packages')" wire:navigate>
+                        {{ __('Packages') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="clipboard-document-list" :href="route('changelogs')" :current="request()->routeIs('changelogs')" wire:navigate>
+                        {{ __('Changelogs') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
