@@ -1,0 +1,163 @@
+{
+  "title": "Kies de visuele wereld voor de startpagina",
+  "question": "De roll wees Revisieblad aan. Houd het, neem een alternatief, of rol opnieuw.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Revisieblad",
+      "kicker": "THE ROLL",
+      "lineage": "revisiehistorie-tabel en titelblok van een technische tekening / datasheet",
+      "thesis": "De startpagina is blad 1 van een technische tekening: het titelblok bovenaan, de zoekregel als in te vullen veld, en elke package een genummerde regel in de revisietabel met een rode delta zodra iets breekt.",
+      "palette": ["#FFFFFF", "#14171C", "#1F5FBF", "#C8102E", "#0B2E5C"],
+      "materials": ["wit tekenpapier met haarlijn-rules", "titelblokcellen", "rode revisiedriehoek (Δ)", "blauwdruk als donkere modus"],
+      "viewport": "Bovenaan een geruled titelblok: links het woordmerk, rechts Dashboard/Log in. Daaronder de titelcel met de hook en één regel uitleg, ernaast drie feitcellen (packages, changelogs, laatste revisie). Dan het zoekveld over de volle breedte in mono, een strip met auteur-cellen, en de revisietabel: REV · PACKAGE · FROM→TO · Δ + ~ · DESCRIPTION · DATE. Onderaan 'SHEET 1 OF n' als paginering.",
+      "risk": "Als de rules te zwaar worden leest het als een spreadsheet; de kracht zit in haarlijnen, veel wit en één rode delta.",
+      "raised": [
+        {"from": "challenger-orizuru", "raise": "REV-kolom: elke regel draagt zijn volgnummer in een vaste marge-kolom."},
+        {"from": "challenger-chromatophore", "raise": "Eén alarmkleur op de hele pagina; rood is uitsluitend van breaking."},
+        {"from": "challenger-suminagashi", "raise": "De nieuwste changelog print in volle inkt; oudere rijen verdunnen naar grijs."},
+        {"from": "challenger-vu-bridge", "raise": "Elke package-regel is hetzelfde instrument; de rode delta verschijnt alleen als breaking > 0, en opent bij hover/focus direct de lijst breaking changes."},
+        {"from": "challenger-saville", "raise": "Eén kop, geen eyebrow; het lege papier van het blad blijft leeg."},
+        {"from": "challenger-hoffmann", "raise": "Rules staan op een vaste 8px-eenheid; kolommen hertellen per breakpoint in plaats van uit te rekken."}
+      ],
+      "wireframe": {"cols": 12, "rows": 10, "regions": [
+        {"label": "titelblok: woordmerk · nav", "x": 0, "y": 0, "w": 12, "h": 1},
+        {"label": "TITLE: hook + één regel", "x": 0, "y": 1, "w": 8, "h": 2},
+        {"label": "feitcellen: packages · changelogs · laatste rev", "x": 8, "y": 1, "w": 4, "h": 2},
+        {"label": "FIND PACKAGE (mono zoekveld)", "x": 0, "y": 3, "w": 12, "h": 1, "accent": true},
+        {"label": "AUTHOR-cellen", "x": 0, "y": 4, "w": 12, "h": 1},
+        {"label": "REVISIETABEL: REV · PACKAGE · FROM→TO · Δ + ~ · DESCRIPTION · DATE", "x": 0, "y": 5, "w": 12, "h": 4},
+        {"label": "SHEET 1 OF n · paginering", "x": 0, "y": 9, "w": 12, "h": 1}
+      ]},
+      "comp": ".impeccable/mocks/decision/assigned.png"
+    },
+    {
+      "id": "model-pick",
+      "label": "De Patch",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "unified diff / git patch",
+      "thesis": "De index is een diff: per package één hunk met @@ old → new @@, min- en plusregels met gutter-tinten, en de zoekbalk als hunk-header.",
+      "palette": ["#FFFFFF", "#1B1F24", "#FDE8E8", "#E6F4EA", "#2F6F3E"],
+      "materials": ["diff-gutter met regelnummers", "rood/groen regeltinten", "mono broncode"],
+      "viewport": "Kop en zoekveld als @@-header; daaronder per package een hunk: '- laravel/framework 11.0.0' en '+ laravel/framework 12.0.0', met de samenvatting als contextregel en breaking/new/updated als gutter-markers.",
+      "risk": "Dit is waar de meeste runs in deze categorie landen (terminal/diff-look), en een diff kent twee toestanden waar het product er drie heeft; breaking/new/updated vecht met +/-.",
+      "wireframe": {"cols": 12, "rows": 10, "regions": [
+        {"label": "header", "x": 0, "y": 0, "w": 12, "h": 1},
+        {"label": "kop + zoekveld als @@ hunk-header", "x": 0, "y": 1, "w": 12, "h": 2, "accent": true},
+        {"label": "één diff-hunk per package: -old +new, gutter-tinten", "x": 0, "y": 3, "w": 12, "h": 6},
+        {"label": "paginering", "x": 0, "y": 9, "w": 12, "h": 1}
+      ]},
+      "comp": ".impeccable/mocks/decision/model-pick.png"
+    },
+    {
+      "id": "challenger-orizuru",
+      "label": "Orizuru-vouwreeks",
+      "verdict": "declined",
+      "lineage": "32 genummerde vouwen van vermiljoen washi tot kraanvogel",
+      "thesis": "Elke versieovergang is een vouw; het package-blad transformeert stap voor stap.",
+      "palette": ["#D23A2A", "#F6E9E4", "#1A1A1A", "#C9A227"],
+      "materials": ["washi met kozo-vezel", "vouwlijnen in wit", "goudstip"],
+      "viewport": "Een vermiljoen vlak met een genummerde marge-kolom van versiestappen.",
+      "risk": "PHP-developers herkennen zich niet in origami; breaking/new/updated verdwijnt in het vouwdiagram.",
+      "case": "Verliest op beide assen: geen identificatie, en de drievoudige categorisering past niet in een vouwreeks.",
+      "kept": "De strikte genummerde marge-kolom.",
+      "hero": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-orizuru-crane-sequence-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-orizuru-crane-sequence.webp"
+    },
+    {
+      "id": "challenger-chromatophore",
+      "label": "Chromatofoor-huid",
+      "verdict": "declined",
+      "lineage": "inktvishuid als levend display",
+      "thesis": "De pagina is een huid waar waarschuwingssignalen overheen trekken.",
+      "palette": ["#F3EBDD", "#7A3B2E", "#2BB3A3", "#2A2320"],
+      "materials": ["pigmentcellen", "GPU-shaders", "variabel lettergewicht"],
+      "viewport": "Een crème mantel waar patronen als golven overheen lopen; signalen direct op het oppervlak getekend.",
+      "risk": "Zoekresultaten worden onleesbaar in een levende textuur.",
+      "case": "Verliest op beide assen; alleen de discipline van één signaalkleur is bruikbaar.",
+      "kept": "Precies één flitskleur voor het actieve signaal.",
+      "hero": "https://impeccable.style/worlds/cards/reefs-bioluminescent-nocturnal-chromatophore-skin-language-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/reefs-bioluminescent-nocturnal-chromatophore-skin-language.webp"
+    },
+    {
+      "id": "challenger-suminagashi",
+      "label": "Suminagashi-bak",
+      "verdict": "declined",
+      "lineage": "gemarmerde inkt op water, echte vloeistofwetten",
+      "thesis": "De pagina is een inktoppervlak dat onthoudt waar het gestroomd heeft.",
+      "palette": ["#F7F5F0", "#1E2A5A", "#2B2B2B", "#9AA3B8"],
+      "materials": ["indigo en sumi-inkt", "WebGL-vloeistofsolver", "papierwit water"],
+      "viewport": "Een stille marge met tekst; het bassin zelf componeert alleen als stroming.",
+      "risk": "Geen enkele relatie met versies, packages of risico.",
+      "case": "Verliest op beide assen; de recency-regel (nieuwste is donkerst) is het enige dat mee mag.",
+      "kept": "De nieuwste druppel is altijd het donkerste gebied.",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-fluid-ink-basin-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/medium-native-fluid-ink-basin.webp"
+    },
+    {
+      "id": "challenger-vu-bridge",
+      "label": "VU-meterbrug",
+      "verdict": "declined",
+      "lineage": "rij ballistische naalden achter glas op een opnametafel",
+      "thesis": "Elke package is een identieke meter; de naald leunt in het rood zodra iets breekt.",
+      "palette": ["#F4EEDC", "#1A1A1A", "#B0B4B8", "#C8102E"],
+      "materials": ["ivoren meterschalen", "glas", "walnoot en staal"],
+      "viewport": "Een rij identieke meters die je in één blik afleest; alleen de boog voorbij nul is rood.",
+      "risk": "Verbergt de versieparen en de samenvatting achter een metafoor.",
+      "case": "Sterke risico-scan, maar verliest op identificatie en op leesbaarheid van from→to; de instrumentdiscipline gaat mee.",
+      "kept": "Identieke instrumenten schouder aan schouder; rood alleen voorbij nul.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-vu-meter-bridge-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/signals-instruments-vu-meter-bridge.webp"
+    },
+    {
+      "id": "challenger-saville",
+      "label": "Factory-catalogushoes",
+      "verdict": "declined",
+      "lineage": "Saville's FAC-nummers, pulsarplot, kleurcodestrip",
+      "thesis": "Elke changelog is een catalogusnummer; kleurblokken coderen breaking/new/updated.",
+      "palette": ["#0A0A0A", "#FFFFFF", "#E4B400", "#2E7D32", "#1565C0"],
+      "materials": ["mat zwart", "witte haarlijnplot", "gecodeerde hue-strip"],
+      "viewport": "Vast onbedrukt zwart, één plot, het nummer als enige kop.",
+      "risk": "Niets twee keer gelabeld, hover vertaalt: het tegendeel van antwoord-in-seconden.",
+      "case": "Verliest op beide assen: te veel decoderen voor een developer mid-upgrade.",
+      "kept": "Eén kop, verder onbedrukte ruimte.",
+      "hero": "https://impeccable.style/worlds/cards/brand-identity-canon-saville-catalog-sleeve-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/brand-identity-canon-saville-catalog-sleeve.webp"
+    },
+    {
+      "id": "challenger-hoffmann",
+      "label": "Wiener Werkstätte-rooster",
+      "verdict": "declined",
+      "lineage": "Hoffmanns geperforeerde zilveren manden, zwart-witte lattices",
+      "thesis": "Alle inhoud zit in vierkant-geperforeerde kaders; elke knop is één cel.",
+      "palette": ["#FFFFFF", "#000000", "#C0C4C8"],
+      "materials": ["gehamerd zilver", "zwarte lak", "vierkante eenheid"],
+      "viewport": "Galeriewit met zwarte rules; de actieve cel vult massief zwart.",
+      "risk": "Luxe-showroom heeft niets met Composer-updates te maken.",
+      "case": "Verliest op beide assen; alleen de rasterdiscipline is bruikbaar.",
+      "kept": "Het rooster hertelt zijn vierkanten per viewport, maar rekt er nooit één uit.",
+      "hero": "https://impeccable.style/worlds/cards/design-canon-hoffmann-gridsmith-showroom-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/design-canon-hoffmann-gridsmith-showroom.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code", "toggle": true},
+  "canon": true,
+  "canonCard": {
+    "label": "De categoriestandaard",
+    "thesis": "Wat deze categorie altijd levert (Packagist, npm): gecentreerde kop, grote zoekbalk, kaartjes met badges, impeccabel uitgevoerd.",
+    "palette": ["#FFFFFF", "#111827", "#2563EB"],
+    "materials": ["schone grid", "afgeronde kaarten", "zachte schaduw"],
+    "viewport": "Gecentreerde headline, zoekbalk eronder, chips met auteurs, drie kolommen package-kaarten.",
+    "risk": "Bewust niet te onderscheiden van de concurrentie.",
+    "wireframe": {"cols": 12, "rows": 10, "regions": [
+      {"label": "nav", "x": 0, "y": 0, "w": 12, "h": 1},
+      {"label": "gecentreerde headline + subregel", "x": 2, "y": 1, "w": 8, "h": 2},
+      {"label": "zoekbalk", "x": 3, "y": 3, "w": 6, "h": 1, "accent": true},
+      {"label": "auteur-chips", "x": 2, "y": 4, "w": 8, "h": 1},
+      {"label": "3-koloms package-kaarten", "x": 0, "y": 5, "w": 12, "h": 5}
+    ]},
+    "comp": ".impeccable/mocks/decision/canon.png"
+  },
+  "steer": true
+}
