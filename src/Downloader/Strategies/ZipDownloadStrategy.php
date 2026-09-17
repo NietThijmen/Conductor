@@ -4,6 +4,8 @@ namespace NietThijmen\ComposerChangelog\Downloader\Strategies;
 
 use App\Http\Integrations\Composer\Data\PackageVersion;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
+use Log;
 use NietThijmen\ComposerChangelog\Exceptions\DownloadFailedException;
 use RuntimeException;
 use ZipArchive;
@@ -34,10 +36,22 @@ final class ZipDownloadStrategy implements DownloadStrategy
         }
 
         try {
-            $this->client->request('GET', $url, ['sink' => $tempFile]);
+            $this->client->request(
+                'GET',
+                $url,
+                [
+                    'sink' => $tempFile,
+                    'User-Agent' => 'Composer Changelog (https://github.com/nietthijmen/composer-changelog)',
+                    'accept' => 'application/zip',
+                    'Connection' => 'close'
+                ]);
 
             $this->extract($tempFile, $destination);
             $this->flattenDirectory($destination);
+        } catch (GuzzleException $exception) {
+            Log::error("Failed to download zip from {$url}: {$exception->getMessage()}");
+            throw $exception; // throw the exception up to fail "gracefully"
+
         } finally {
             if (file_exists($tempFile)) {
                 unlink($tempFile);

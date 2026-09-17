@@ -83,6 +83,10 @@ final class FileSystemDiffer implements FileSystemDifferContract
                 continue;
             }
 
+            if (!in_array($fileInfo->getExtension(), ['php', 'json', 'lock', 'md'])) {
+                continue;
+            }
+
             $relativePath = $this->relativePath($fileInfo->getPathname(), $directory);
             $files[$relativePath] = $fileInfo->getPathname();
         }

@@ -2,6 +2,7 @@
 
 namespace NietThijmen\ComposerChangelog\Contracts;
 
+use App\Models\Registry;
 use NietThijmen\ComposerChangelog\Exceptions\DownloadFailedException;
 use NietThijmen\ComposerChangelog\Exceptions\UnsupportedPackageTypeException;
 
@@ -15,5 +16,5 @@ interface PackageDownloader
      * @throws DownloadFailedException
      * @throws UnsupportedPackageTypeException
      */
-    public function download(string $package, string $version, string $destination): string;
+    public function download(Registry $registry, string $package, string $version, string $destination): string;
 }

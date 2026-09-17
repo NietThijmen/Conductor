@@ -59,13 +59,13 @@ class GenerateChangelog implements ShouldQueue
         try {
             $basePath = Storage::disk('local')->path('package-versions/'.Str::uuid());
 
-            $oldDirectory = $downloader->download($this->package->name, $this->oldVersion, $basePath);
-            $newDirectory = $downloader->download($this->package->name, $this->newVersion, $basePath);
+            $oldDirectory = $downloader->download($this->package->registry, $this->package->name, $this->oldVersion, $basePath);
+            $newDirectory = $downloader->download($this->package->registry, $this->package->name, $this->newVersion, $basePath);
 
             $diff = $differ->compare($oldDirectory, $newDirectory);
             $response = $agent->prompt(
                 prompt: $this->buildPrompt($diff),
-                model: 'deepseek/deepseek-v4.1-flash:nitro'
+                model: config('ai.default_model', 'gpt-4o-mini'),
             );
 
             if (! $response instanceof StructuredAgentResponse) {

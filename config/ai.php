@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'default' => 'openrouter',
+    'default' => env('DEFAULT_AI_PROVIDER', 'openrouter'),
+    'default_model' => env('DEFAULT_AI_MODEL', 'deepseek/deepseek-v4.1-flash'),
     'default_for_images' => 'gemini',
     'default_for_audio' => 'openai',
     'default_for_transcription' => 'openai',

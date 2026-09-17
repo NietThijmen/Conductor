@@ -4,6 +4,7 @@ namespace NietThijmen\ComposerChangelog\Downloader;
 
 use App\Http\Integrations\Composer\Composer;
 use App\Http\Integrations\Composer\Requests\GetPackageMetadataRequest;
+use App\Models\Registry;
 use GuzzleHttp\Client;
 use NietThijmen\ComposerChangelog\Contracts\PackageDownloader as PackageDownloaderContract;
 use NietThijmen\ComposerChangelog\Downloader\Strategies\DownloadStrategy;
@@ -26,14 +27,24 @@ final class PackageDownloader implements PackageDownloaderContract
     /**
      * Download a specific package version into the given destination.
      *
+     * @param Registry $registry
+     * @param string $package
+     * @param string $version
+     * @param string $destination
      * @throws DownloadFailedException
      * @throws UnsupportedPackageTypeException
      */
-    public function download(string $package, string $version, string $destination): string
+    public function download(Registry $registry, string $package, string $version, string $destination): string
     {
-        $metadata = $this->composer
-            ->send(new GetPackageMetadataRequest($package))
-            ->dtoOrFail();
+        try {
+            $metadata = $this->composer
+                ->withRegistry($registry)
+                ->send(new GetPackageMetadataRequest($package))
+                ->dtoOrFail();
+        } catch (\Throwable $exception) {
+            \Log::error("Failed to fetch metadata for [{$package}]: {$exception->getMessage()}");
+            throw $exception; // throw up to fail "gracefully"
+        }
 
         $packageVersion = $metadata->findVersion($version);
 

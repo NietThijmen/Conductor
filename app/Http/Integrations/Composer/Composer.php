@@ -20,8 +20,15 @@ class Composer extends Connector
     use AcceptsJson;
 
     public function __construct(
-        public readonly ?Registry $registry = null
+        public ?Registry $registry = null
     ) {}
+
+    public function withRegistry(Registry $registry): self
+    {
+        $clone = clone $this;
+        $clone->registry = $registry;
+        return $clone;
+    }
 
     /**
      * Resolve the base URL for the registry, falling back to the public Packagist repository.
@@ -65,7 +72,14 @@ class Composer extends Connector
      */
     protected function defaultHeaders(): array
     {
-        return [];
+        return [
+            'Accept' => 'application/json',
+            'User-Agent' => 'Changelog Generator/https://github.com/nietthijmen/composer-changelogger',
+            'X-Composer-Client-Version' => '2.4.0',
+            'X-Composer-Client-Name' => 'Changelog Generator',
+            'X-Composer-Client-Platform' => 'php',
+            'X-Composer-Client-Platform-Version' => phpversion(),
+        ];
     }
 
     /**
