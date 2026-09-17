@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Enums\ChangelogStatus;
 use Database\Factories\PackageFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
 
 /**
@@ -55,5 +57,17 @@ class Package extends Model
     public function changelogs(): HasMany
     {
         return $this->hasMany(Changelog::class);
+    }
+
+    /**
+     * Get the latest checked changelog for this package.
+     *
+     * @return HasOne<Changelog, $this>
+     */
+    public function latestChangelog(): HasOne
+    {
+        return $this->hasOne(Changelog::class)
+            ->where('status', ChangelogStatus::Checked)
+            ->latest();
     }
 }

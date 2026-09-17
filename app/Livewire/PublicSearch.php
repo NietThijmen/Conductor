@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Enums\ChangelogChangeType;
 use App\Models\Changelog;
 use App\Models\Package;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
@@ -54,7 +55,7 @@ class PublicSearch extends Component
     /**
      * Get the distinct vendors from active package names.
      *
-     * @return Collection<int, \stdClass>
+     * @return Collection<int, Package>
      */
     #[Computed]
     public function vendors(): Collection
@@ -71,6 +72,8 @@ class PublicSearch extends Component
 
     /**
      * Get the paginated list of packages matching the current filters.
+     *
+     * @return LengthAwarePaginator<int, Package>
      */
     #[Computed]
     public function packages(): LengthAwarePaginator
@@ -110,7 +113,7 @@ class PublicSearch extends Component
         ];
     }
 
-    public function render()
+    public function render(): View
     {
         $title = 'Find changelogs';
 

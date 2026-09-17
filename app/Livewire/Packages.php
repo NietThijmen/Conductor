@@ -5,6 +5,9 @@ namespace App\Livewire;
 use App\Models\Package;
 use App\Models\Registry;
 use Flux\Flux;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
@@ -22,7 +25,7 @@ class Packages extends Component
 
     public string $name = '';
 
-    public ?string $registry_id = null;
+    public ?int $registry_id = null;
 
     public ?string $current_version = null;
 
@@ -86,6 +89,9 @@ class Packages extends Component
         $package->update(['is_active' => ! $package->is_active]);
     }
 
+    /**
+     * @return array<string, list<mixed>>
+     */
     public function rules(): array
     {
         return [
@@ -103,8 +109,11 @@ class Packages extends Component
         $this->resetErrorBag();
     }
 
+    /**
+     * @return LengthAwarePaginator<int, Package>
+     */
     #[Computed]
-    public function packages()
+    public function packages(): LengthAwarePaginator
     {
         return Package::query()
             ->with('registry')
@@ -112,15 +121,18 @@ class Packages extends Component
             ->paginate(15);
     }
 
+    /**
+     * @return Collection<int, Registry>
+     */
     #[Computed]
-    public function registries()
+    public function registries(): Collection
     {
         return Registry::query()
             ->orderBy('name')
             ->get();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.packages');
     }

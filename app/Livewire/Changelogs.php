@@ -7,6 +7,8 @@ use App\Jobs\GenerateChangelog;
 use App\Models\Changelog;
 use App\Models\Package;
 use Flux\Flux;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -70,6 +72,9 @@ class Changelogs extends Component
         $this->deletingChangelogId = null;
     }
 
+    /**
+     * @return array<string, list<mixed>>
+     */
     public function rules(): array
     {
         return [
@@ -88,8 +93,11 @@ class Changelogs extends Component
         $this->resetErrorBag();
     }
 
+    /**
+     * @return Collection<int, Changelog>
+     */
     #[Computed]
-    public function backlog()
+    public function backlog(): Collection
     {
         return Changelog::query()
             ->with('package')
@@ -98,8 +106,11 @@ class Changelogs extends Component
             ->get();
     }
 
+    /**
+     * @return Collection<int, Changelog>
+     */
     #[Computed]
-    public function checking()
+    public function checking(): Collection
     {
         return Changelog::query()
             ->with('package')
@@ -108,8 +119,11 @@ class Changelogs extends Component
             ->get();
     }
 
+    /**
+     * @return Collection<int, Changelog>
+     */
     #[Computed]
-    public function checked()
+    public function checked(): Collection
     {
         return Changelog::query()
             ->with('package')
@@ -118,8 +132,11 @@ class Changelogs extends Component
             ->get();
     }
 
+    /**
+     * @return Collection<int, Package>
+     */
     #[Computed]
-    public function packages()
+    public function packages(): Collection
     {
         return Package::query()
             ->orderBy('name')
@@ -132,7 +149,7 @@ class Changelogs extends Component
         $this->status = ChangelogStatus::Backlog->value;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.changelogs');
     }

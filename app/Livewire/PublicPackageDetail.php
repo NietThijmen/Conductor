@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Changelog;
 use App\Models\Package;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
@@ -49,7 +50,7 @@ class PublicPackageDetail extends Component
             ->get();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.public-package-detail')
             ->title("{$this->package->name} changelog");
