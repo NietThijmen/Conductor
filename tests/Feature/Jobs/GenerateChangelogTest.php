@@ -24,11 +24,11 @@ it('downloads both versions, diffs them, and persists an AI-generated changelog'
     $downloader = Mockery::mock(PackageDownloader::class);
     $downloader->shouldReceive('download')
         ->once()
-        ->with($package->name, '1.0.0', Mockery::pattern('/package-versions/'))
+        ->with($package->registry, $package->name, '1.0.0', Mockery::pattern('/package-versions/'))
         ->andReturn('/tmp/package-versions/old/laravel/framework/1.0.0');
     $downloader->shouldReceive('download')
         ->once()
-        ->with($package->name, '2.0.0', Mockery::pattern('/package-versions/'))
+        ->with($package->registry, $package->name, '2.0.0', Mockery::pattern('/package-versions/'))
         ->andReturn('/tmp/package-versions/new/laravel/framework/2.0.0');
 
     $differ = Mockery::mock(FileSystemDiffer::class);
@@ -52,7 +52,7 @@ it('downloads both versions, diffs them, and persists an AI-generated changelog'
     $agent = Mockery::mock(ChangelogGenerator::class);
     $agent->shouldReceive('prompt')
         ->once()
-        ->with(Mockery::pattern('/Analyze the following unified diff/'))
+        ->withArgs(fn (string $prompt, mixed ...$args) => str_contains($prompt, 'Analyze the following unified diff'))
         ->andReturn(new StructuredAgentResponse(
             invocationId: 'fake-invocation',
             structured: [

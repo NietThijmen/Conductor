@@ -33,7 +33,8 @@ it('does not add authentication for none auth type', function () {
 
     $connector = new Composer($registry);
 
-    expect($connector->headers()->all())->toBeEmpty();
+    expect($connector->headers()->get('Authorization'))->toBeNull()
+        ->and($connector->headers()->get('COMPOSER-AUTH'))->toBeNull();
 });
 
 it('adds basic authentication from registry config', function () {

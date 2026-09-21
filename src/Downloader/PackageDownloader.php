@@ -30,7 +30,7 @@ final class PackageDownloader implements PackageDownloaderContract
      * @throws DownloadFailedException
      * @throws UnsupportedPackageTypeException
      */
-    public function download(Registry $registry, string $package, string $version, string $destination): string
+    public function download(?Registry $registry, string $package, string $version, string $destination): string
     {
         try {
             $metadata = $this->composer

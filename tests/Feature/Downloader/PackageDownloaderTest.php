@@ -3,6 +3,7 @@
 use App\Http\Integrations\Composer\Composer;
 use App\Http\Integrations\Composer\Data\PackageVersion;
 use App\Http\Integrations\Composer\Requests\GetPackageMetadataRequest;
+use App\Models\Registry;
 use NietThijmen\ComposerChangelog\Contracts\PackageDownloader as PackageDownloaderContract;
 use NietThijmen\ComposerChangelog\Downloader\PackageDownloader;
 use NietThijmen\ComposerChangelog\Downloader\Strategies\DownloadStrategy;
@@ -48,8 +49,9 @@ it('downloads a package using a matching strategy', function () {
 
     $downloader = new PackageDownloader($connector, [$strategy]);
     $destination = sys_get_temp_dir().'/composer-downloader-'.uniqid();
+    $registry = Registry::factory()->create();
 
-    $path = $downloader->download('laravel/framework', 'v11.0.0', $destination);
+    $path = $downloader->download($registry, 'laravel/framework', 'v11.0.0', $destination);
 
     expect($path)->toBe($destination.'/laravel/framework/v11.0.0')
         ->and(file_exists($path.'/downloaded.txt'))->toBeTrue();
@@ -73,8 +75,9 @@ it('throws when the requested version is not found', function () {
     ]));
 
     $downloader = new PackageDownloader($connector, []);
+    $registry = Registry::factory()->create();
 
-    expect(fn () => $downloader->download('laravel/framework', 'v11.0.0', sys_get_temp_dir()))
+    expect(fn () => $downloader->download($registry, 'laravel/framework', 'v11.0.0', sys_get_temp_dir()))
         ->toThrow(DownloadFailedException::class, 'Version [v11.0.0] not found');
 });
 
@@ -95,8 +98,9 @@ it('throws when no strategy supports the version', function () {
     ]));
 
     $downloader = new PackageDownloader($connector, []);
+    $registry = Registry::factory()->create();
 
-    expect(fn () => $downloader->download('laravel/framework', 'v11.0.0', sys_get_temp_dir()))
+    expect(fn () => $downloader->download($registry, 'laravel/framework', 'v11.0.0', sys_get_temp_dir()))
         ->toThrow(UnsupportedPackageTypeException::class);
 });
 

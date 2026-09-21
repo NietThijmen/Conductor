@@ -23,7 +23,7 @@ class Composer extends Connector
         public ?Registry $registry = null
     ) {}
 
-    public function withRegistry(Registry $registry): self
+    public function withRegistry(?Registry $registry): self
     {
         $clone = clone $this;
         $clone->registry = $registry;

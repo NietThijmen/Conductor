@@ -18,7 +18,7 @@ class ChangelogServer extends Server
     protected array $tools = [
         FindPackage::class,
         FindVersions::class,
-        GetChangelogs::class
+        GetChangelogs::class,
     ];
 
     protected array $resources = [
