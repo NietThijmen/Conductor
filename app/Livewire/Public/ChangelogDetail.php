@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Public;
 
 use App\Models\Changelog;
 use Illuminate\Contracts\View\View;
@@ -10,7 +10,7 @@ use Livewire\Component;
 
 #[Title('{changelog.title}')]
 #[Layout('layouts.public')]
-class PublicChangelogDetail extends Component
+class ChangelogDetail extends Component
 {
     public Changelog $changelog;
 
@@ -32,6 +32,6 @@ class PublicChangelogDetail extends Component
         $title = $this->changelog->title
             ?? "{$this->changelog->package->name} {$this->changelog->new_version} changelog";
 
-        return view('livewire.public-changelog-detail')->title($title);
+        return view('livewire.public.changelog-detail')->title($title);
     }
 }

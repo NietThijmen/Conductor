@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Public;
 
 use App\Models\Changelog;
 use App\Models\Package;
@@ -13,7 +13,7 @@ use Livewire\Component;
 
 #[Title('{package.name}')]
 #[Layout('layouts.public')]
-class PublicPackageDetail extends Component
+class PackageDetail extends Component
 {
     public Package $package;
 
@@ -52,7 +52,7 @@ class PublicPackageDetail extends Component
 
     public function render(): View
     {
-        return view('livewire.public-package-detail')
+        return view('livewire.public.package-detail')
             ->title("{$this->package->name} changelog");
     }
 }

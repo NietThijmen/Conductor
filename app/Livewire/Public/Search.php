@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Public;
 
 use App\Enums\ChangelogChangeType;
 use App\Enums\ChangelogStatus;
@@ -20,7 +20,7 @@ use Livewire\WithPagination;
 
 #[Title('Find changelogs')]
 #[Layout('layouts.public')]
-class PublicSearch extends Component
+class Search extends Component
 {
     use WithPagination;
 
@@ -167,6 +167,6 @@ class PublicSearch extends Component
             $title = "Packages by {$this->vendor}";
         }
 
-        return view('livewire.public-search')->title($title);
+        return view('livewire.public.search')->title($title);
     }
 }
